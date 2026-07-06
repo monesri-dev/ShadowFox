@@ -1,32 +1,17 @@
-const text = ["Software Developer", "CSE Student", "Cloud Enthusiast"];
+// Automatically update footer year
+const year = document.getElementById("year");
 
-let i = 0;
-let j = 0;
-let isDeleting = false;
-
-function type() {
-  let current = text[i];
-
-  if (!isDeleting) {
-    j++;
-  } else {
-    j--;
-  }
-
-  document.getElementById("typing").innerText = current.substring(0, j);
-
-  if (!isDeleting && j === current.length) {
-    isDeleting = true;
-    setTimeout(type, 1000);
-    return;
-  }
-
-  if (isDeleting && j === 0) {
-    isDeleting = false;
-    i = (i + 1) % text.length;
-  }
-
-  setTimeout(type, 100);
+if (year) {
+    year.textContent = new Date().getFullYear();
 }
 
-type();
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth"
+        });
+    });
+});
