@@ -1,4 +1,3 @@
-// Automatically update footer year
 const year = document.getElementById("year");
 
 if (year) {
