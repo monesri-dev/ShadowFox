@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | ShopEase</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <header>
+        <nav class="navbar">
+
+            <div class="logo">
+                <a href="index.html">ShopEase</a>
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="index.html">Home</a></li>
+
+                <li><a href="products.html">Products</a></li>
+
+                <li><a href="wishlist.html" class="active">Wishlist</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+
+                <li>
+                    <a href="cart.html">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-count">0</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <div class="menu-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- ================= PAGE TITLE ================= -->
+
+    <section>
+
+        <h2>My Wishlist ❤️</h2>
+
+        <p style="text-align:center;margin-bottom:30px;">
+            Save your favourite products here.
+        </p>
+
+        <div
+            id="wishlist-container"
+            class="product-grid">
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 ShopEase. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <button id="topBtn">↑</button>
+
+    <!-- JavaScript -->
+
+    <script src="js/products.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/wishlist.js"></script>
+
+</body>
+
+</html>

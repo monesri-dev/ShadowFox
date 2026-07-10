@@ -8,12 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderFeaturedProducts();
     renderBestSellers();
+
     updateCartCount();
+    updateWishlistCount();
+
     initializeMobileMenu();
     initializeBackToTop();
 
 });
-
 // ======================================
 // Render Featured Products
 // ======================================
@@ -46,6 +48,7 @@ const renderBestSellers = () => {
 
 };
 
+
 // ======================================
 // Product Card Template
 // ======================================
@@ -53,10 +56,24 @@ const renderBestSellers = () => {
 const createProductCard = (product) => {
 
     return `
+
         <div class="product-card">
 
-            <img src="${product.image}"
-                 alt="${product.name}">
+            <div class="product-image">
+
+                <button
+                    class="wishlist-btn"
+                    onclick="toggleWishlist(${product.id})">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </button>
+
+                <img
+                    src="${product.image}"
+                    alt="${product.name}">
+
+            </div>
 
             <div class="product-info">
 
@@ -79,117 +96,57 @@ const createProductCard = (product) => {
             </div>
 
         </div>
+
     `;
 
 };
-
 // ======================================
-// Add to Cart
+// Wishlist Functions
 // ======================================
 
-const addToCart = (productId) => {
+// Add or Remove Product from Wishlist
+const toggleWishlist = (productId) => {
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    // Get wishlist from Local Storage
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    const existingProduct = cart.find(item => item.id === productId);
+    // Check if product already exists
+    const index = wishlist.indexOf(productId);
 
-    if (existingProduct) {
+    if (index === -1) {
 
-        existingProduct.quantity++;
+        // Add product
+        wishlist.push(productId);
+
+        alert("Added to Wishlist ❤️");
 
     } else {
 
-        cart.push({
-            id: productId,
-            quantity: 1
-        });
+        // Remove product
+        wishlist.splice(index, 1);
+
+        alert("Removed from Wishlist");
 
     }
 
-    localStorage.setItem("cart", JSON.stringify(cart));
+    // Save updated wishlist
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
 
-    updateCartCount();
-
-    alert("Product added to cart!");
-
-};
-
-// ======================================
-// Update Cart Count
-// ======================================
-
-const updateCartCount = () => {
-
-    const cartCount = document.getElementById("cart-count");
-
-    if (!cartCount) return;
-
-    const cart = JSON.parse(localStorage.getItem("cart")) || [];
-
-    const totalItems = cart.reduce((sum, item) => {
-
-        return sum + item.quantity;
-
-    }, 0);
-
-    cartCount.textContent = totalItems;
+    // Update icon count
+    updateWishlistCount();
 
 };
 
-// ======================================
-// Mobile Menu
-// ======================================
 
-const initializeMobileMenu = () => {
+// Update Wishlist Count in Navbar
+const updateWishlistCount = () => {
 
-    const menuToggle = document.querySelector(".menu-toggle");
+    const wishlistCount = document.getElementById("wishlist-count");
 
-    const navLinks = document.querySelector(".nav-links");
+    if (!wishlistCount) return;
 
-    if (!menuToggle || !navLinks) return;
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
-    menuToggle.addEventListener("click", () => {
-
-        navLinks.classList.toggle("active");
-
-    });
-
-};
-
-// ======================================
-// Back To Top Button
-// ======================================
-
-const initializeBackToTop = () => {
-
-    const topBtn = document.getElementById("topBtn");
-
-    if (!topBtn) return;
-
-    window.addEventListener("scroll", () => {
-
-        if (window.scrollY > 300) {
-
-            topBtn.style.display = "block";
-
-        } else {
-
-            topBtn.style.display = "none";
-
-        }
-
-    });
-
-    topBtn.addEventListener("click", () => {
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    });
+    wishlistCount.textContent = wishlist.length;
 
 };
