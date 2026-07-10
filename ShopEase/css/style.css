@@ -1,1 +1,37 @@
+/* =========================
+   Contact Form
+========================= */
 
+form{
+    max-width:600px;
+    margin:auto;
+}
+
+form input,
+form textarea{
+
+    width:100%;
+
+    padding:14px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+
+}
+
+form textarea{
+
+    resize:vertical;
+
+}
+
+form button{
+
+    width:100%;
+
+}
