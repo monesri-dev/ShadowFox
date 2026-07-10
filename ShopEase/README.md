@@ -135,4 +135,4 @@ git clone https://github.com/your-username/ShopEase.git
 
 ## 📄 License
 
-This project is created for learning and portfolio purposes.
+This project is created for learning  purposes.
